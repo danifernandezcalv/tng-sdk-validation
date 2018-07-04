@@ -132,6 +132,16 @@ class DescriptorVariables(BaseVariables):
         return (str(self.func.content['virtual_deployment_units'][0]
                 ['vm_image_format']))
 
+    @boolean_rule_variable(label='DHCP')
+    def vl_dhcp_configuration(self):
+        return (self.func.content['virtual_links'][0]
+                ['dhcp'])
+
+
+    @select_multiple_rule_variable(label='VDU Connection Points')
+    def vdu_connection_points(self):
+        return (self.func.content[]'virtual_deployment_units'][0]
+                ['connection_points'])
     # @numeric_rule_variable(label='Number of mgmt points')
     # def vdu_resource_connection_points_mng(self):
     #     return (self.descriptor.vdu_resource_connection_points_mng)
@@ -200,7 +210,8 @@ def process_rules(custom_rule_file, descriptor_file_name):
 
     # print("DUMP OF RULES: \n"+json.dumps(rules))
     # Execute all the rules
-
+    print(rules)
+    print(variables.vl_dhcp_configuration())
     triggered = run_all(rule_list=rules,
                         defined_variables=DescriptorVariables(descriptor),
                         defined_actions=DescriptorActions(descriptor),

@@ -59,6 +59,13 @@ class TngSdkValidationCustomRulesTest(unittest.TestCase):
         rules_validation = (validator_custom_rules.process_rules(rules, descriptor))
         self.assertTrue(rules_validation)
 
+    def test_custom_rules_process_dhcp_rule_ok(self):
+        rules = SAMPLE_DIR + 'dhcp_rule.yml'
+        descriptor = SAMPLE_DIR + 'function_1_ok.yml'
+        rules_validation = (validator_custom_rules.process_rules(rules, descriptor))
+        print(rules_validation)
+        self.assertFalse(rules_validation)
+
 
 if __name__ == "__main__":
     unittest.main()

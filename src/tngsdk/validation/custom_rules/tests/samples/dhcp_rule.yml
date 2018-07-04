@@ -1,0 +1,10 @@
+# rule 1 - DHCP
+- conditions:
+    all:
+      - name: vl_dhcp_configuration
+        operator: is_false
+        value: False
+  actions:
+    - name: raise_error
+      params:
+        error_text: DHCP should be active!
