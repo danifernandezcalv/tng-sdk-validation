@@ -105,6 +105,17 @@ class TngSdkValidationRestTest(unittest.TestCase):
         # do a post with a real validation for service
         # with errors
 
+    def test_rest_validation_function_syntax_ok_file(self):
+        with open(SAMPLES_DIR + 'samples/functions/valid-son/' +
+                  'firewall-vnfd.yml', 'rb') as f:
+            r = self.app.post('/api/v1/validations?sync=true&syntax=true&' +
+                              'function=embedded',
+                              files={'firewall-vnfd.yml': f})
+            data = r.data.decode('utf-8')
+            d = ast.literal_eval(data)
+            self.assertEqual(r.status_code, 200)
+            self.assertEqual(d['error_count'], 0)
+
     def test_rest_validation_function_syntax_ok(self):
         r = self.app.post('/api/v1/validations?sync=true&syntax=true&' +
                           'function=' + SAMPLES_DIR + 'samples/functions/' +

@@ -140,7 +140,7 @@ class DescriptorVariables(BaseVariables):
 
     @select_multiple_rule_variable(label='VDU Connection Points')
     def vdu_connection_points(self):
-        return (self.func.content[]'virtual_deployment_units'][0]
+        return (self.func.content['virtual_deployment_units'][0]
                 ['connection_points'])
     # @numeric_rule_variable(label='Number of mgmt points')
     # def vdu_resource_connection_points_mng(self):

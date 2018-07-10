@@ -260,6 +260,18 @@ def parse_args(input_args=None):
         required=False
     )
     parser.add_argument(
+        "--source",
+        choices=['url', 'local', 'embedded'],
+        help="Specify the source of the descriptor file. It can take the "
+             "values 'url' (when the source is a URL), 'local' when the file "
+             "is a file from the local file system and 'embedded' when the "
+             "descriptor is included as an attachment in the request. "
+             "In the first two cases a path parameter is required",
+        default='local',
+        required=False,
+        dest="source"
+    )
+    parser.add_argument(
         "--host",
         help="Bind address for this service",
         default='127.0.0.1',
